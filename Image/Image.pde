@@ -10,11 +10,25 @@ Boolean widthLarger=false, heightLarger=false;
 PImage pic;
 Boolean nightMode=false;
 //
-size(1280, 720); //Landscape
+void setup() 
+{
+ size(1280, 720); //Landscape
 //Copy Display Algorithm from Hello World
 appWidth = width;
 appHeight = height;
+// 
+}//End setup
 //
+void draw() {
+}//End draw
+//
+void keyPressed() {
+}//End keyPressed
+//
+void mousePressed() {
+}//End mousePressed
+//
+//End Main Program
 //Aspect Ratio of Background Image
 // Xbox-Logo-3.jpg
 //Note: Dimensions are found in the image file / Right Click / Properties / Details
