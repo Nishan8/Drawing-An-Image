@@ -25,7 +25,7 @@ void setup()
   //Xbox-Logo-3.jpg
   //Note: Dimensions are found in the image file / Right Click / Properties / Details
   int picWidth = 1280 ;
-  int picHeight = 720 ;
+  int picHeight = 1080 ;
   int picWidth2 = 728;
   int picHeight2 = 1092;
   //int picWidth3 = 1920;
@@ -53,11 +53,13 @@ void setup()
     picWidthAdjusted2 = picWidth2; //stretch or reduce
     picWidthAdjusted2 = smallerDimension2 / largerDimension2;
     picHeightAdjusted2 = picWidthAdjusted2 * imageHeightRatio2;
+    println("here", picWidthAdjusted2, picHeightAdjusted2);
   } else { //False if Portrait
     largerDimension2 = picHeight2;
     smallerDimension2 = picWidth2;
     heightLarger2 = true;
     //Portrait Image larger image to smaller rectangle (or larger)
+    println("here, else");
   }
   //
   //Teaching Example: width is known to be larger
