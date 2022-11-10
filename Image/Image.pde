@@ -99,6 +99,7 @@ void mousePressed() {
   }
   if ( mouseButton == RIGHT) {
     nightMode = false;
+    rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
     tint(255, 50); //Gray Scale: use 1/2 tnt value for white (i.e.
      image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
   }
