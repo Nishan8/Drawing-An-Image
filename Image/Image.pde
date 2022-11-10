@@ -5,8 +5,12 @@
 //Global Variables
 int appWidth, appHeight;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
+float topX, topY, topWidth, topHeight;
+float bottomX, bottomY, bottomWidth, bottomHeight;
 float picWidthAdjusted=0.0, picHeightAdjusted=0.0;
-PImage pic;
+float picWidthAdjusted2=0.0, picHeightAdjusted2=0.0;
+float picWidthAdjusted3=0.0, picHeightAdjusted3=0.0;
+PImage pic, pic2, pic3;
 Boolean nightMode=false;
 int tintDayMode=255, tintDayModeOpacity=50, tintRed=64, tintGreen=64, tintBlue=40, tintNightModeOpacity=85;
 //
@@ -22,10 +26,16 @@ void setup()
   //Note: Dimensions are found in the image file / Right Click / Properties / Details
   int picWidth = 1280 ;
   int picHeight = 720 ;
+  int picWidth2 = 728;
+  int picHeight2 = 1092;
+  //int picWidth3 = 1920;
+  //int picHeight3 = 1080;
   //
   //Image Orientation: Landscape, Square, Portrait
   float smallerDimension, largerDimension, imageWidthRatio=0.0, imageHeightRatio=0.0;
-  Boolean widthLarger=false, heightLarger=false;
+  float smallerDimension2, largerDimension2, imageWidthRatio2=0.0, imageHeightRatio2=0.0;
+  float smallerDimension3, largerDimension3, imageWidthRatio3=0.0, imageHeightRatio3=0.0;
+  Boolean widthLarger=false, heightLarger=false, widthLarger2=false, heightLarger2=false;
   if ( picWidth >= picHeight ) { //True if Landscape or Square
     largerDimension = picWidth;
     smallerDimension = picHeight;
@@ -34,6 +44,20 @@ void setup()
     largerDimension = picHeight;
     smallerDimension = picWidth;
     heightLarger = true;
+  }
+  if ( picWidth2 >= picHeight2 ) { //True if Landscape or Square
+    largerDimension2 = picWidth2;
+    smallerDimension2 = picHeight2;
+    widthLarger2 = true;
+    //Landscape larger image to smaller rectangle (or larger)
+    picWidthAdjusted2 = picWidth2; //stretch or reduce
+    picWidthAdjusted2 = smallerDimension2 / largerDimension2;
+    picHeightAdjusted2 = picWidthAdjusted2 * imageHeightRatio2;
+  } else { //False if Portrait
+    largerDimension2 = picHeight2;
+    smallerDimension2 = picWidth2;
+    heightLarger2 = true;
+    //Portrait Image larger image to smaller rectangle (or larger)
   }
   //
   //Teaching Example: width is known to be larger
@@ -61,11 +85,21 @@ void setup()
   }
   //
   //Population
-  pic = loadImage("../Images Used/Xbox-Logo-3.jpg");
+  pic = loadImage("../Images Used/landscape/Xbox-Logo-3.jpg");
+  pic2 = loadImage("../Images Used/portrait/Lamborghini Aventador2.jpg");
+  pic3 = loadImage("../Images used/landscape/Ferrari F8-2.jpg");
   backgroundImageX = appWidth*0;
   backgroundImageY = appHeight*0;
   backgroundImageWidth = appWidth-1;
   backgroundImageHeight = appHeight-1;
+  topX = appWidth * 0.7/4;
+  topY = appHeight * 0.3/20;
+  topWidth = appWidth * 13/20;
+  topHeight = appHeight * 10/20;
+  bottomX = appWidth *1/2;
+  bottomY = appHeight * 2.8/4;
+  bottomWidth = appWidth * 7/20;
+  bottomHeight = appHeight * 5/20;
   //
   //Verify Variable Values after Algorithm
   println("App Width:", appWidth, " and App Height:", appHeight);
@@ -75,6 +109,8 @@ void setup()
   //
   //Rectangular Layout and Image Drawing to CANVAS
   //rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  rect( topX, topY, topWidth, topHeight );
+  rect( bottomX, bottomY, bottomWidth, bottomHeight );
   //
   //Background Image must be single executed code
   if ( nightMode == false ) tint(tintDayMode, tintDayModeOpacity); //Gray Scale, Day use: use 1/2 tint value for white (i.e. 128/256=1/2)
@@ -83,6 +119,8 @@ void setup()
 }//End setup
 //
 void draw() {
+  image(pic2, topX, topY, picWidthAdjusted, picHeightAdjusted2);
+  image(pic3, topX, topY, topWidth, topHeight);
 }//End draw
 //
 void keyPressed() {
@@ -101,7 +139,7 @@ void mousePressed() {
     nightMode = false;
     rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
     tint(255, 50); //Gray Scale: use 1/2 tnt value for white (i.e.
-     image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+    image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
   }
 }//End mousePressed
 //
