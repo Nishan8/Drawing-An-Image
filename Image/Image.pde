@@ -22,20 +22,21 @@ void setup()
   appHeight = height;
   //
   //Image Dimensions for Aspect Ratio
-  //Xbox-Logo-3.jpg
+  //Xbox image 3 
   //Note: Dimensions are found in the image file / Right Click / Properties / Details
-  int picWidth = 1280 ;
-  int picHeight = 1080 ;
-  int picWidth2 = 728;
+  int picWidth = 1280; //Xbox Image
+  int picHeight = 720;
+  int picWidth2 = 728; //Lamborghini image
   int picHeight2 = 1092;
-  //int picWidth3 = 1920;
-  //int picHeight3 = 1080;
+  int picWidth3 = 1920; //Ferrari image 
+  int picHeight3 = 1080;
   //
   //Image Orientation: Landscape, Square, Portrait
   float smallerDimension, largerDimension, imageWidthRatio=0.0, imageHeightRatio=0.0;
   float smallerDimension2, largerDimension2, imageWidthRatio2=0.0, imageHeightRatio2=0.0;
   float smallerDimension3, largerDimension3, imageWidthRatio3=0.0, imageHeightRatio3=0.0;
   Boolean widthLarger=false, heightLarger=false, widthLarger2=false, heightLarger2=false;
+  Boolean widthLarger3=false, heightLarger3=false;
   if ( picWidth >= picHeight ) { //True if Landscape or Square
     largerDimension = picWidth;
     smallerDimension = picHeight;
@@ -44,22 +45,6 @@ void setup()
     largerDimension = picHeight;
     smallerDimension = picWidth;
     heightLarger = true;
-  }
-  if ( picWidth2 >= picHeight2 ) { //True if Landscape or Square
-    largerDimension2 = picWidth2;
-    smallerDimension2 = picHeight2;
-    widthLarger2 = true;
-    //Landscape larger image to smaller rectangle (or larger)
-    picWidthAdjusted2 = picWidth2; //stretch or reduce
-    picWidthAdjusted2 = smallerDimension2 / largerDimension2;
-    picHeightAdjusted2 = picWidthAdjusted2 * imageHeightRatio2;
-    println("here", picWidthAdjusted2, picHeightAdjusted2);
-  } else { //False if Portrait
-    largerDimension2 = picHeight2;
-    smallerDimension2 = picWidth2;
-    heightLarger2 = true;
-    //Portrait Image larger image to smaller rectangle (or larger)
-    println("here, else");
   }
   //
   //Teaching Example: width is known to be larger
@@ -94,14 +79,14 @@ void setup()
   backgroundImageY = appHeight*0;
   backgroundImageWidth = appWidth-1;
   backgroundImageHeight = appHeight-1;
-  topX = appWidth * 0.7/4;
-  topY = appHeight * 0.3/20;
-  topWidth = appWidth * 13/20;
-  topHeight = appHeight * 10/20;
+  topX = appWidth * 1/4;
+  topY = appHeight * 1/20;
+  topWidth = appWidth * 1/2;
+  topHeight = appHeight * 13/20;
   bottomX = appWidth *1/2;
-  bottomY = appHeight * 2.8/4;
-  bottomWidth = appWidth * 7/20;
-  bottomHeight = appHeight * 5/20;
+  bottomY = appHeight * 3/4;
+  bottomWidth = appWidth * 1/4;
+  bottomHeight = appHeight * 4/20;
   //
   //Verify Variable Values after Algorithm
   println("App Width:", appWidth, " and App Height:", appHeight);
@@ -114,34 +99,92 @@ void setup()
   rect( topX, topY, topWidth, topHeight );
   rect( bottomX, bottomY, bottomWidth, bottomHeight );
   //
+  //Algorithm uses rect-variables
+  if ( picWidth2 >= picHeight2 ) { //True if Landscape or Square
+    largerDimension2 = picWidth2;
+    smallerDimension2 = picHeight2;
+    widthLarger2 = true;
+    //Landscape Image larger image to smaller rectangle (or larger)
+    picWidthAdjusted2 = topWidth; //stretch or reduce
+    imageHeightRatio2 = smallerDimension2 / largerDimension2;
+    picHeightAdjusted2 = picWidthAdjusted2 * imageHeightRatio2;
+    println("here", picWidthAdjusted2, picHeightAdjusted2);
+    if ( picHeightAdjusted2 > topHeight ) {
+      println("STOP: image is too big for rectangle layout");
+      exit(); //stop further use of the APP
+    }
+  } else { //False if Portrait
+    largerDimension2 = picHeight2;
+    smallerDimension2 = picWidth2;
+    heightLarger2 = true;
+    //Portrait Image larger image to smaller rectangle (or larger)
+    //Students to create
+    picHeightAdjusted2 = bottomHeight; //stretch or reduce
+    imageWidthRatio2 = smallerDimension2 / largerDimension2;
+    picWidthAdjusted2 = picHeightAdjusted2 * imageWidthRatio2;
+      println("here", picWidthAdjusted2, picHeightAdjusted2);
+    if ( picWidthAdjusted2 > topWidth ) {
+      println("STOP: image is too big for rectangle layout");
+      exit(); //stop further use of the APP
+    }
+  }
+  if ( picWidth3 >= picHeight3 ) { //True if Landscape or Square
+    largerDimension3 = picWidth3;
+    smallerDimension3 = picHeight3;
+    widthLarger3 = true;
+    //Landscape Image larger image to smaller rectangle (or larger)
+    picWidthAdjusted3 = bottomWidth; //stretch or reduce
+    imageHeightRatio3 = smallerDimension3 / largerDimension3;
+    picHeightAdjusted3 = picWidthAdjusted3 * imageHeightRatio3;
+    println("here", picWidthAdjusted3, picHeightAdjusted3);
+    if ( picHeightAdjusted3 > bottomHeight ) {
+      println("STOP: image height is too big for rectangle layout");
+      exit(); //stop further use of the APP
+    }
+  } else { //False if Portrait
+    largerDimension3 = picHeight3;
+    smallerDimension3 = picWidth3;
+    heightLarger3 = true;
+    //Portrait Image larger image to smaller rectangle (or larger)
+    //Students to create
+    picHeightAdjusted3 = bottomHeight; //stretch or reduce
+    imageWidthRatio3 = smallerDimension3 / largerDimension3;
+    picWidthAdjusted3 = picHeightAdjusted3 * imageWidthRatio3;
+      println("here", picWidthAdjusted3, picHeightAdjusted3);
+    if ( picWidthAdjusted3 > topWidth ) {
+      println("STOP: image width is too big for rectangle layout");
+      exit(); //stop further use of the APP
+    }
+  }
   //Background Image must be single executed code
   if ( nightMode == false ) tint(tintDayMode, tintDayModeOpacity); //Gray Scale, Day use: use 1/2 tint value for white (i.e. 128/256=1/2)
   if ( nightMode == true ) tint(tintRed, tintGreen, tintBlue, tintNightModeOpacity); //RGB: Night Mode
   image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
 }//End setup
 //
-void draw() {
-  image(pic2, topX, topY, picWidthAdjusted, picHeightAdjusted2);
-  image(pic3, topX, topY, topWidth, topHeight);
+void draw()
+{
+  image(pic2, topX, topY, picWidthAdjusted2, picHeightAdjusted2);
+  image(pic3, bottomX, bottomY, bottomWidth, bottomHeight);
 }//End draw
 //
 void keyPressed() {
 }//End keyPressed
 //
 void mousePressed() {
-  //
-  //Mouse Pressed will control Background image
+  //  
+  //Mouse Pressed will control background image3
   if ( mouseButton == LEFT) {
     nightMode = true;
     rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
     tint(64, 64, 40, 85); //RGB: Night Mode
     image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
   }
-  if ( mouseButton == RIGHT) {
+  if ( mouseButton == RIGHT ) {
     nightMode = false;
-    rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
-    tint(255, 50); //Gray Scale: use 1/2 tnt value for white (i.e.
-    image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+    rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+    tint(255, 50); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
+    image(pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
   }
 }//End mousePressed
 //
