@@ -1,4 +1,3 @@
-//Global Variables
 int appWidth, appHeight;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
 float topX, topY, topWidth, topHeight;
@@ -18,9 +17,9 @@ void setup()
   appHeight = height;
   //
   //Population
-  pic1 = loadImage("../Images Used/Landscape/");
-  pic2 = loadImage("../Images Used/Landscape/");
-  pic3 = loadImage("../Images Used/Portrait/");
+  pic1 = loadImage("../Images Used/landscape/Xbox-Logo-3.jpg");
+  pic2 = loadImage("../Images Used/portrait/Lamborghini Aventador2.jpg");
+  pic3 = loadImage(" ../Images used/landscape/Ferrari F8-2.jpg");
   backgroundImageX = appWidth*0;
   backgroundImageY = appHeight*0;
   backgroundImageWidth = appWidth-1;
@@ -41,7 +40,7 @@ void setup()
   int picHeight1 = 600;
   int picWidth2 = 860;//Lamborghini Image
   int picHeight2 = 529;
-  int picWidth3 = 325; //Darth image
+  int picWidth3 = 325; //Ferrari Image
   int picHeight3 = 485;
   //
   //Image Orientation: Landscape, Square, Portrait
@@ -57,8 +56,9 @@ void setup()
     imageHeightRatio1 = smallerDimension1 / largerDimension1;
     picHeightAdjusted1 = picWidthAdjusted1 * imageHeightRatio1;
     //
-    if ( picHeightAdjusted1 > backgroundImageHeight ) { //Error Catch
-      println("STOP: image is too big for rectangle layout");
+    if ( picHeightAdjusted1 > backgroundImageHeight+1 ) { //Error Catch
+      println (picHeightAdjusted1, backgroundImageHeight);
+      println("STOP: image background height is too big for rectangle layout");
       exit(); //stop further use of the APP
     }
   } else { //False if Portrait
@@ -70,7 +70,7 @@ void setup()
     imageWidthRatio1 = smallerDimension1 / largerDimension1;
     picWidthAdjusted1 = picHeightAdjusted1 * imageWidthRatio1;
     if ( picWidthAdjusted1 > backgroundImageWidth ) {
-      println("STOP: image is too big for rectangle layout");
+      println("STOP: image background width is too big for rectangle layout");
       exit(); //stop further use of the APP
     }
   }
@@ -154,7 +154,7 @@ void mousePressed() {
     nightMode = true;
     rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
     tint(64, 64, 40, 85); //RGB: Night Mode
-    image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted1, picHeightAdjusted1);
+    image( pic1, backgroundImageX, backgroundImageY, picWidthAdjusted1, picHeightAdjusted1);
   }
   if ( mouseButton == RIGHT ) {
     nightMode = false;
