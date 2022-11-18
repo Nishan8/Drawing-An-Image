@@ -19,7 +19,7 @@ void setup()
   //Population
   pic1 = loadImage("../Images Used/landscape/Xbox-Logo-3.jpg");
   pic2 = loadImage("../Images Used/portrait/Lamborghini Aventador2.jpg");
-  pic3 = loadImage(" ../Images used/landscape/Ferrari F8-2.jpg");
+  pic3 = loadImage("../Images used/landscape/Ferrari F8-2.jpg");
   backgroundImageX = appWidth*0;
   backgroundImageY = appHeight*0;
   backgroundImageWidth = appWidth-1;
@@ -36,12 +36,12 @@ void setup()
   //Image Dimensions for Aspect Ratio: image meta data
   //Note: meta explored in MP3's or music files
   //Note: Dimensions are found in the image file / Right Click / Properties / Details
-  int picWidth1 = 800; //Xbox Image
-  int picHeight1 = 600;
-  int picWidth2 = 860;//Lamborghini Image
-  int picHeight2 = 529;
-  int picWidth3 = 325; //Ferrari Image
-  int picHeight3 = 485;
+  int picWidth1 = 1280; //Xbox Image
+  int picHeight1 = 720;
+  int picWidth2 = 728;//Lamborghini Image
+  int picHeight2 = 1092;
+  int picWidth3 = 1920; //Ferrari Image
+  int picHeight3 = 1080;
   //
   //Image Orientation: Landscape, Square, Portrait
   float smallerDimension1, largerDimension1, imageWidthRatio1=0.0, imageHeightRatio1=0.0;
